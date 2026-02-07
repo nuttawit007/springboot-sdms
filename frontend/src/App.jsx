@@ -1,21 +1,40 @@
 import { useEffect, useState } from "react";
-import { getText } from "./api/http";
+import { getAllStudents } from "./api/sutdentApi.js";
 
 export default function App() {
-  const [status, setStatus] = useState("Loading...");
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getText("/api/test")
-      .then(setStatus)
-      .catch(() => setStatus("Backend not reachable"));
+    getAllStudents().then((data) => {
+        console.log("Fetched data:", data);
+        setStudents(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="p-6 rounded-xl shadow">
-        <div className="text-xl font-bold">Frontend ↔ Backend</div>
-        <div className="mt-3 font-mono">{status}</div>
+      <div>
+        <h1>Student List</h1>
+        {students.length === 0 ? (
+          <p>No students found.</p>
+        ) : (
+          <ul>
+            {students.map((student) => (
+              <li key={student.studentCode}>
+                {student.studentCode} - {student.firstName} {student.lastName}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-    </div>
-  );
-}
+    );
+  };
