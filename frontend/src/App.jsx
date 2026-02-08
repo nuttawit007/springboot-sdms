@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router';
 import StudentPage from "./pages/student/StudentPage.jsx";
 import CreateStudentPage from "./pages/student/CreateStudentPage.jsx";
 import EditStudentPage from "./pages/student/EditStudentPage.jsx";
+import GradeRecordPage from './pages/grade/GradeRecordPage.jsx';
+import ViewGradePage from './pages/grade/ViewGradePage.jsx';
 import Sidebar from "./components/Sidebar.jsx";
 
 
@@ -11,13 +13,13 @@ export default function App() {
       <>
         <BrowserRouter>
           <div className="flex">
-            <Sidebar />
+            <Sidebar />x
             <div className="flex-1 p-6">
               <Routes>
                 <Route path="/" element={<Navigate to="/students" />} /> 
                 <Route path="/students" element={<StudentPage/>} />
                 <Route path="/create-student" element={<CreateStudentPage/>} />
-                <Route path="/edit-student/:id" element={<EditStudentPage/>} />
+                <Route path="/edit-student/:studentCode" element={<EditStudentPage/>} />
               </Routes>
             </div>
           </div>

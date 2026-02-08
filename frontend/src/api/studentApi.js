@@ -5,8 +5,8 @@ export const getAllStudents = async () => {
     return response.data;
 }
 
-export const getStudentById = async (id) => {
-    const response = await api.get(`/students/${id}`);
+export const getStudentByStudentCode = async (studentCode) => {
+    const response = await api.get(`/students/${studentCode}`);
     return response.data;
 }
 
@@ -15,13 +15,13 @@ export const createStudent = async (studentData) => {
     return response.data;
 }
 
-export const updateStudent = async (id, studentData) => {
-    const response = await api.put(`/students/${id}`, studentData);
+export const updateStudent = async (studentCode, studentData) => {
+    const response = await api.put(`/students/${studentCode}`, studentData);
     return response.data;
 }
 
-export const deleteStudent = async (id) => {
-    const response = await api.delete(`/students/${id}`);
+export const deleteStudent = async (studentCode) => {
+    const response = await api.delete(`/students/${studentCode}`);
     return response.data;
 }
 

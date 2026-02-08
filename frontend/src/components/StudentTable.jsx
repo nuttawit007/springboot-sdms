@@ -35,8 +35,8 @@ const StudentTable = ({students}) => {
                             </td>
                             <td className="px-5 py-3.5">
                                 <div className="flex items-center justify-center gap-2">
-                                    <EditButton type="student" id={student.id} />
-                                    <DeleteButton type="student" id={student.id} />
+                                    <EditButton type="student" studentCode={student.studentCode} />
+                                    <DeleteButton type="student" studentCode={student.studentCode} />
                                 </div>
                             </td>
                         </tr>

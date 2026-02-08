@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { getStudentById, updateStudent } from '../../api/studentApi';
+import { getStudentByStudentCode, updateStudent } from '../../api/studentApi';
 import { ArrowLeft } from 'lucide-react';
 
 const EditStudentPage = () => {
-    const { id } = useParams();
+    const { studentCode } = useParams();
     const navigate = useNavigate();
     const [studentData, setStudentData] = useState({
         studentCode: '',
@@ -15,12 +15,12 @@ const EditStudentPage = () => {
     });
 
     useEffect(() => {
-        getStudentById(id).then(data => {
+        getStudentByStudentCode(studentCode).then(data => {
             setStudentData(data);
         }).catch(error => {
             console.error("Error fetching student data:", error);
         });
-    }, [id]);
+    }, [studentCode]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,7 +33,7 @@ const EditStudentPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateStudent(id, studentData).then(() => {
+        updateStudent(studentCode, studentData).then(() => {
             navigate('/students');
         }).catch(error => {
             console.error("Error updating student data:", error);
