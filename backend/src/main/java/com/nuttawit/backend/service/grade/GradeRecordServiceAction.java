@@ -80,20 +80,20 @@ public class GradeRecordServiceAction implements GradeRecordService {
 
     @Override
     @Transactional
-    public GradeRecord updateGradeRecord(String studentCode, GradeUpdateRequestDto gradeUpdateRequestDto) {
+    public GradeRecord updateGradeRecord(String studentCode, String subject, GradeUpdateRequestDto gradeUpdateRequestDto) {
         List<GradeRecord> gradeRecords = gradeRecordRepository.findByStudent_StudentCode(studentCode);
         if (gradeRecords.isEmpty()) {
             throw new RuntimeException("No grade record found for studentCode: " + studentCode);
         }
 
         boolean subjectExists = gradeRecords.stream()
-                .anyMatch(gr -> gr.getSubject().equals(gradeUpdateRequestDto.getSubject()));
+                .anyMatch(gr -> gr.getSubject().equals(subject));
         if (!subjectExists) {
-            throw new RuntimeException("No grade record found for subject: " + gradeUpdateRequestDto.getSubject());
+            throw new RuntimeException("No grade record found for subject: " + subject);
         }
 
         GradeRecord gradeRecord = gradeRecords.stream()
-                .filter(gr -> gr.getSubject().equals(gradeUpdateRequestDto.getSubject()))
+                .filter(gr -> gr.getSubject().equals(subject))
                 .findFirst()
                 .get();
         gradeRecord.setSubject(gradeUpdateRequestDto.getSubject());
@@ -105,12 +105,16 @@ public class GradeRecordServiceAction implements GradeRecordService {
 
     @Override
     @Transactional
-    public String deleteGradeRecord(String studentCode) {
+    public String deleteGradeRecord(String studentCode, String subject) {
         List<GradeRecord> gradeRecords = gradeRecordRepository.findByStudent_StudentCode(studentCode);
         if (gradeRecords.isEmpty()) {
             throw new RuntimeException("No grade record found for studentCode: " + studentCode);
         }
-        gradeRecordRepository.deleteAll(gradeRecords);
+        GradeRecord gradeRecord = gradeRecords.stream()
+                .filter(gr -> gr.getSubject().equals(subject))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No grade record found for subject: " + subject));
+        gradeRecordRepository.delete(gradeRecord);
         return "deleted successfully";
     }
 

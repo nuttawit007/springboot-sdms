@@ -19,9 +19,9 @@ public interface GradeRecordService {
     GradeRecord createGradeRecord(GradeCreateRequestDto gradeCreateRequestDto);
 
     // Update existing GradeRecord
-    GradeRecord updateGradeRecord(String studentCode, GradeUpdateRequestDto gradeUpdateRequestDto);
+    GradeRecord updateGradeRecord(String studentCode, String subject, GradeUpdateRequestDto gradeUpdateRequestDto);
 
     // Delete GradeRecord by StudentCode
-    String deleteGradeRecord(String studentCode);
+    String deleteGradeRecord(String studentCode, String subject);
 
 }

@@ -42,13 +42,13 @@ public class GradeController {
         return gradeRecordService.createGradeRecord(gradeCreateRequestDto);
     }
 
-    @PutMapping("/grades/{studentCode}")
-    public GradeRecord updateGrade(@PathVariable String studentCode, @RequestBody GradeUpdateRequestDto gradeUpdateRequestDto) {
-        return gradeRecordService.updateGradeRecord(studentCode, gradeUpdateRequestDto);
+    @PutMapping("/grades/{studentCode}/{subject}")
+    public GradeRecord updateGrade(@PathVariable String studentCode, @PathVariable String subject, @RequestBody GradeUpdateRequestDto gradeUpdateRequestDto) {
+        return gradeRecordService.updateGradeRecord(studentCode, subject,gradeUpdateRequestDto);
     }
 
-    @DeleteMapping("/grades/{studentCode}")
-    public String deleteGrade(@PathVariable String studentCode) {
-        return gradeRecordService.deleteGradeRecord(studentCode);
+    @DeleteMapping("/grades/{studentCode}/{subject}")
+    public String deleteGrade(@PathVariable String studentCode, @PathVariable String subject) {
+        return gradeRecordService.deleteGradeRecord(studentCode, subject);
     }
 }
