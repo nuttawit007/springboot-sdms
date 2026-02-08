@@ -32,9 +32,9 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/students/{id}")
-    public StudentResponseDto getStudentById(@PathVariable Long id) {
-        return studentService.getStudentById(id);
+    @GetMapping("/students/{studentCode}")
+    public StudentResponseDto getStudentById(@PathVariable String studentCode) {
+        return studentService.getStudentById(studentCode);
     }
 
     @PostMapping("/students")
@@ -42,13 +42,13 @@ public class StudentController {
         return studentService.createStudent(studentCreateRequestDto);
     }
 
-    @PutMapping("/students/{id}")
-    public Student updateStudent(@PathVariable Long id, @RequestBody StudentUpdateRequestDto studentUpdateRequestDto) {
-        return studentService.updateStudent(id, studentUpdateRequestDto);
+    @PutMapping("/students/{studentCode}")
+    public Student updateStudent(@PathVariable String studentCode, @RequestBody StudentUpdateRequestDto studentUpdateRequestDto) {
+        return studentService.updateStudent(studentCode, studentUpdateRequestDto);
     }
 
-    @DeleteMapping("/students/{id}")
-    public void deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
+    @DeleteMapping("/students/{studentCode}")
+    public String deleteStudent(@PathVariable String studentCode) {
+        return studentService.deleteStudent(studentCode);
     }
 }

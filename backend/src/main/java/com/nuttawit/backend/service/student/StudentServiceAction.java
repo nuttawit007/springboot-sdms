@@ -37,8 +37,8 @@ public class StudentServiceAction implements StudentService {
     }
     // Get student by ID
     @Override
-    public StudentResponseDto getStudentById(Long id) {
-        Student student = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+    public StudentResponseDto getStudentById(String studentCode) {
+        Student student = studentRepository.findByStudentCode(studentCode).orElseThrow(() -> new RuntimeException("Student not found"));
         return new StudentResponseDto(
             student.getId(),
             student.getStudentCode(),
@@ -63,8 +63,8 @@ public class StudentServiceAction implements StudentService {
     // Put student
     @Override
     @Transactional
-    public Student updateStudent(Long id, StudentUpdateRequestDto studentUpdateRequestDto) {
-        Student student = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+    public Student updateStudent(String studentCode, StudentUpdateRequestDto studentUpdateRequestDto) {
+        Student student = studentRepository.findByStudentCode(studentCode).orElseThrow(() -> new RuntimeException("Student not found"));
         student.setFirstName(studentUpdateRequestDto.getFirstName());
         student.setLastName(studentUpdateRequestDto.getLastName());
         student.setClassroom(studentUpdateRequestDto.getClassroom());
@@ -75,8 +75,9 @@ public class StudentServiceAction implements StudentService {
     // Delete student
     @Override
     @Transactional
-    public void deleteStudent(Long id) {
-        Student student = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+    public String deleteStudent(String studentCode) {
+        Student student = studentRepository.findByStudentCode(studentCode).orElseThrow(() -> new RuntimeException("Student not found"));
         studentRepository.delete(student);
+        return "Student deleted successfully";
     }
 }

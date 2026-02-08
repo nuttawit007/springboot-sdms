@@ -14,14 +14,14 @@ public interface StudentService {
     List<StudentResponseDto> getAllStudents();
 
     // Retrieve a student by their ID
-    StudentResponseDto getStudentById(Long id);
+    StudentResponseDto getStudentById(String studentCode);
 
     // Create a new student
     Student createStudent(StudentCreateRequestDto studentCreateRequestDto);
 
     // Update an existing student
-    Student updateStudent(Long id, StudentUpdateRequestDto studentUpdateRequestDto);
+    Student updateStudent(String studentCode, StudentUpdateRequestDto studentUpdateRequestDto);
 
     // Delete a student by their ID
-    void deleteStudent(Long id);
+    String deleteStudent(String studentCode);
 }
