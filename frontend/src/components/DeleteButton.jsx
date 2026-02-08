@@ -1,6 +1,6 @@
 import React from 'react'
 import { deleteStudent } from '../api/studentApi'
-import { deleteGradeRecord } from '../api/gradeAPi'
+import { deleteGradeRecord } from '../api/gradeApi'
 import { Trash2 } from "lucide-react"
 
 const DeleteButton = ({type, studentCode, subject}) => {

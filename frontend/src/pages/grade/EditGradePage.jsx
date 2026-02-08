@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { getGradeByStudentCode, updateGradeRecord } from '../../api/gradeAPi';
+import { getGradeByStudentCode, updateGradeRecord } from '../../api/gradeApi';
 import { ArrowLeft, BookOpen, Lock, Save } from "lucide-react";
 
 

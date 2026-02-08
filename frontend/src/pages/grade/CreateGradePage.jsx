@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router';
-import { createGradeRecord } from '../../api/gradeAPi';
+import { createGradeRecord } from '../../api/gradeApi';
 import { ArrowLeft, PlusCircle, Lock } from 'lucide-react';
 
 const CreateGradePage = () => {

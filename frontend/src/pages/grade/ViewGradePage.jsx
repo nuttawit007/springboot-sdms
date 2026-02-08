@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getGradeByStudentCode } from '../../api/gradeAPi'
+import { getGradeByStudentCode } from '../../api/gradeApi'
 import { getStudentByStudentCode } from '../../api/studentApi'
 import { useParams, useNavigate } from 'react-router'
 import { ArrowLeft, Award } from "lucide-react"
