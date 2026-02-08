@@ -3,7 +3,7 @@ import { deleteStudent } from '../api/studentApi'
 import { deleteGradeRecord } from '../api/gradeAPi'
 import { Trash2 } from "lucide-react"
 
-const DeleteButton = ({type, studentCode}) => {
+const DeleteButton = ({type, studentCode, subject}) => {
     const handleDelete = async () => {
         if (type === 'student') {
             try {
@@ -16,7 +16,7 @@ const DeleteButton = ({type, studentCode}) => {
             }
         } else if (type === 'grades') {
             try {
-                await deleteGradeRecord(studentCode);
+                await deleteGradeRecord(studentCode, subject);
                 alert('Grade record deleted successfully');
                 window.location.reload();
             } catch (error) {
@@ -34,7 +34,7 @@ const DeleteButton = ({type, studentCode}) => {
                 </button>
             )}
             {type === 'grades' && (
-                <button onClick={handleDelete} className="ml-auto inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-red-500/70 transition-colors hover:bg-red-50 hover:text-red-600">
+                <button onClick={handleDelete} className="ml-auto inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-red-500/70 transition-colors hover:bg-red-50 hover:text-red-600 cursor-pointer">
                     <Trash2 className="h-3.5 w-3.5" />
                     Delete
                 </button>

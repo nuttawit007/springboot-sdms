@@ -15,12 +15,12 @@ export const createGradeRecord = async (gradeData) => {
     return response.data;
 }
 
-export const updateGradeRecord = async (studentCode, gradeData) => {
-    const response = await api.put(`/grades/${studentCode}`, gradeData);
+export const updateGradeRecord = async (studentCode, subject,gradeData) => {
+    const response = await api.put(`/grades/${studentCode}/${subject}`, gradeData);
     return response.data;
 }
 
-export const deleteGradeRecord = async (studentCode) => {
-    const response = await api.delete(`/grades/${studentCode}`);
+export const deleteGradeRecord = async (studentCode, subject) => {
+    const response = await api.delete(`/grades/${studentCode}/${subject}`);
     return response.data;
 }
