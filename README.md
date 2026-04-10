@@ -45,7 +45,7 @@ Once the containers are running, the services will be available at:
 
 - **Frontend:** React
 - **Backend:** Spring Boot
-- **Database:** PostgreSQL / MySQL
+- **Database:** PostgreSQL
 - **API:** RESTful API
 
 ## ✨ Key Features
