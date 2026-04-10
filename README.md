@@ -46,6 +46,7 @@ Once the containers are running, the services will be available at:
 - **Frontend:** React
 - **Backend:** Spring Boot
 - **Database:** PostgreSQL
+- **Devtool**: Docker, Doker Compose
 - **API:** RESTful API
 
 ## ✨ Key Features
